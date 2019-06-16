@@ -66,6 +66,7 @@ public:
         for(int i =0 ;i <m;i ++)
             all_ok[i] = false;
         int cnt = m * n * n;
+
         while(cnt --)
         {
             bool fin = true;
@@ -143,6 +144,49 @@ public:
         }
         return safety_check();
     }
+    void showNeed()
+    {
+        cout<<"Need:\n";
+        for(int i =0 ;i <n;i ++)
+        {
+            for(int j =0 ;j < m;j ++)
+            {
+                cout<<Need[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+    void showAllocation()
+    {
+        cout<<"Allocation:\n";
+        for(int i =0 ;i <n;i ++)
+        {
+            for(int j =0 ;j < m;j ++)
+            {
+                cout<<Allocation[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+    void showMax()
+    {
+        cout<<"Max:\n";
+        for(int i =0 ;i <n;i ++)
+        {
+            for(int j =0 ;j < m;j ++)
+            {
+                cout<<Max[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+    void showAvaliable()
+    {
+        cout<<"Avaliable:\n";
+        for(int i =0 ;i < m;i ++)
+            cout<<Avaliable[i]<<" ";
+        cout<<endl;
+    }
 private:
     /**
     * n procedures, m kinds of resources
@@ -162,11 +206,41 @@ int main()
     Banker banker(n,m);
     banker.init();
     cout<<"---"<<banker.safety_check();
+    banker.showAllocation();
+    banker.showMax();
+    banker.showNeed();
+    banker.showAvaliable();
+
+
     int * p = new int [m];
     int line;
     cin>>line;
     for(int i =0 ;i < m;i ++)
         cin>>p[i];
     cout<<"---"<<banker.request_check(p,line);
+    banker.showAvaliable();
+    banker.showAllocation();
+    banker.showMax();
+    banker.showNeed();
+
     return 0;
 }
+
+/**
+0 1 0
+2 0 0
+3 0 2
+2 1 1
+0 0 2
+
+7 5 3
+3 2 2
+9 0 2
+2 2 2
+4 3 3
+
+3 3 2
+
+4 3 3 0
+
+**/
